@@ -8,9 +8,9 @@
   "author": "Kan Luo",
   "license": "MIT",
   "scripts": {
-    "dev": "next dev",
+    "start": "next dev",
     "build": "next build",
-    "start": "next start",
+    "serve": "next start",
     "format": "prettier --write --loglevel warn",
     "lint:all:format": "yarn format \"**/*.{tsx,ts,json,css,scss,html,md}\""
   },
