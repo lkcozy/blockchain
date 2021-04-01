@@ -27,17 +27,17 @@ jobs:
       - name: 🔧 Install and Build
         run: |
           yarn
-          yarn build
+          yarn deploy
 
       - name: 🚀 Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: build # The folder the action should deploy.
+          FOLDER: out # The folder the action should deploy.
 
       - name: Send message to Slack
-      - uses: craftech-io/slack-action@v1
+        uses: craftech-io/slack-action@v1
         with:
           slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: always()

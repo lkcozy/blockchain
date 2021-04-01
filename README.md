@@ -1,5 +1,20 @@
 # Blockchain
 
+<div align="center">
+  <p>
+    <a href="https://github.com/MrMartineau/gatsby-theme-code-notes/blob/master/LICENSE" target="_blank">
+      <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="gatsby-theme-code-notes is released under the MIT license." />
+    </a>
+    <a>
+      <img src="https://img.shields.io/github/package-json/v/lkcozy/blockchain" alt="Current version." />
+    </a>
+    <img src="https://github.com/lkcozy/blockchain/actions/workflows/deploy.yml/badge.svg" alt="Deployment" />
+    <a href="https://github1s.com/lkcozy/blockchain" target="_blank">
+      <img src="https://img.shields.io/badge/Github1s-open-blue" alt="Open Code Notes with github1s" />
+    </a>
+  </p>
+</div>
+
 Blockchain is immutable, distributed public ledger and peer-to-peer (P2P network).
 
 - Block = all transactions within a certain time period
