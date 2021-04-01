@@ -8,9 +8,6 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [13.x]
     steps:
       - uses: actions/checkout@master
       - name: 🛎️ Use Node.js ${{ matrix.node-version }}
