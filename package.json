@@ -9,10 +9,8 @@
   "license": "MIT",
   "scripts": {
     "start": "next dev",
+    "build": "next build && next export",
     "serve": "next start",
-    "build": "next build",
-    "export": "next export",
-    "deploy": "yarn build && yarn export",
     "format": "prettier --write --loglevel warn",
     "lint:all:format": "yarn format \"**/*.{tsx,ts,json,css,scss,html,md}\""
   },

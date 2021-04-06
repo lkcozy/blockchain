@@ -1,4 +1,4 @@
-name: 🚀 Deployment
+name: 📦 Blockchain Deployment 🚀 
 
 on:
   push:
@@ -27,7 +27,7 @@ jobs:
       - name: 🔧 Install and Build
         run: |
           yarn
-          yarn deploy
+          yarn build
 
       - name: 🚀 Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
@@ -36,7 +36,7 @@ jobs:
           BRANCH: gh-pages # The branch the action should deploy to.
           FOLDER: out # The folder the action should deploy.
 
-      - name: Send message to Slack
+      - name: 💬 Send message to Slack
         uses: craftech-io/slack-action@v1
         with:
           slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
