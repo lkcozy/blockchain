@@ -15,7 +15,7 @@
   </p>
 </div>
 
-Blockchain is immutable, distributed public ledger and peer-to-peer (P2P network).
+Blockchain is an immutable, distributed public ledger and peer-to-peer (P2P network).
 
 - Block = all transactions within a certain time period
 - Blockchain = links all blocks together
@@ -33,8 +33,15 @@ Blockchain is immutable, distributed public ledger and peer-to-peer (P2P network
 
 The two common types are the Public Blockchain and the Private Blockchain.
 
-- A public blockchain allows any node that has internet connection to access the blockchain by issuing either a write a read request. Some of the popular public blockchain available today are Bitcoins, Ethereum, Fac-
-tom, Blockstream, and so on.
+- A public blockchain allows any node that has internet connection to access the blockchain by issuing either a write a read request. Some of the popular public blockchain available today are Bitcoins, Ethereum, Factom, Blockstream, and so on.
 - A private blockchain allows nodes to issue similar requests but these nodes must be predefined and authorized.
 
+## References
 
+- [openblockchains/awesome-blockchains](https://github.com/openblockchains/awesome-blockchains): A collection about awesome blockchains - open distributed public databases w/ crypto hashes incl
+
+- [Awesome Blockchain](https://github.com/yjjnls/awesome-blockchain): Curated list of resources for the development and applications of block chain.
+
+- [Awesome Blockchain AI](https://github.com/steven2358/awesome-blockchain-ai): A curated list of Blockchain projects for Artificial Intelligence and Machine Learning.
+
+- [Blockchain-stuff](https://github.com/Xel/Blockchain-stuff): Curated list of blockchain and general cryptocurrency resources

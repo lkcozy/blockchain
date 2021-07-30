@@ -1,0 +1,41 @@
+Resources:
+  CognitoUserPoolToDoUserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      AdminCreateUserConfig:
+        AllowAdminCreateUserOnly: FALSE
+      AutoVerifiedAttributes:
+        - email
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 7
+          RequireLowercase: True
+          RequireNumbers: True
+          RequireSymbols: True
+          RequireUppercase: True
+      Schema:
+        - Name: email
+          AttributeDataType: String
+          Mutable: false
+          Required: true
+        - Name: phone_number
+          Mutable: true
+          Required: true
+      UserPoolName: ${self:service}-${self:provider.stage}-user-pool
+
+  CognitoUserPoolClient:
+    Type: "AWS::Cognito::UserPoolClient"
+    Properties:
+      ClientName: ${self:service}-${self:provider.stage}-user-pool-client
+      GenerateSecret: false
+      UserPoolId:
+        Ref: CognitoUserPoolToDoUserPool
+
+Outputs:
+  UserPoolId:
+    Value:
+      Ref: CognitoUserPoolToDoUserPool
+
+  UserPoolClientId:
+    Value:
+      Ref: CognitoUserPoolClient

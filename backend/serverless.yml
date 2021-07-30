@@ -1,0 +1,153 @@
+service: react-amplify-multi-tenant
+app: amplify-multi-tenant
+org: brayoh
+frameworkVersion: "2"
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+  region: eu-west-1
+  stage: ${opt:stage, 'dev'}
+  environment:
+    PRIMARY_TABLE: ${self:custom.resources.PRIMARY_TABLE}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - lambda:GetFunction,
+        - lambda:CreateFunction,
+        - lambda:DeleteFunction,
+        - lambda:UpdateFunctionConfiguration,
+        - lambda:UpdateFunctionCode,
+        - lambda:ListVersionsByFunction,
+        - lambda:PublishVersion,
+        - lambda:CreateAlias,
+        - lambda:DeleteAlias,
+        - lambda:UpdateAlias,
+        - lambda:GetFunctionConfiguration,
+        - lambda:AddPermission,
+        - lambda:RemovePermission,
+        - lambda:InvokeFunction
+      Resource:
+        - "arn:aws:dynamodb:${self:provider.region}:*:*" # allow creation of tables in our current region
+        - "arn:aws:lambda:${self:provider.region}:*:*" # allow in current region
+
+plugins:
+  - serverless-appsync-plugin
+  - serverless-stack-output
+  - serverless-pseudo-parameters
+  - serverless-webpack
+
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+  resources:
+    PRIMARY_TABLE: ${self:service}-dynamo-table-${self:provider.stage}
+    PRIMARY_BUCKET: ${self:service}-primary-bucket-${self:provider.stage}
+    WEB_HOSTING_BUCKET: ${self:service}-web-hosting-bucket-${self:provider.stage}
+
+  output:
+    handler: ./scripts/output.handler
+    file: ../frontend/src/aws-exports.json
+
+  appSync: # appsync plugin configuration
+    name: ${self:service}-appsync-${self:provider.stage}
+    authenticationType: AMAZON_COGNITO_USER_POOLS
+    additionalAuthenticationProviders:
+      - authenticationType: API_KEY
+    dataSources:
+      - type: AMAZON_DYNAMODB
+        name: PrimaryTable
+        description: "Primary Table"
+        config:
+          tableName: ${self:custom.resources.PRIMARY_TABLE}
+          serviceRoleArn: { Fn::GetAtt: [AppSyncDynamoDBServiceRole, Arn] }
+
+    userPoolConfig:
+      awsRegion: ${self:provider.region}
+      defaultAction: ALLOW
+      userPoolId: { Ref: CognitoUserPoolToDoUserPool } # name of the resource
+    logConfig:
+      loggingRoleArn: { Fn::GetAtt: [AppSyncLoggingServiceRole, Arn] }
+      level: ALL
+
+    mappingTemplates:
+      - dataSource: PrimaryTable
+        type: Mutation
+        field: createTodo
+        request: "create_todo/request.vtl"
+        response: "common-item-response.vtl"
+      - dataSource: PrimaryTable
+        type: Mutation
+        field: updateTodo
+        request: "update_todo/request.vtl"
+        response: "common-item-response.vtl"
+      - dataSource: PrimaryTable
+        type: Mutation
+        field: deleteTodo
+        request: "delete_todo/request.vtl"
+        response: "common-item-response.vtl"
+      - dataSource: PrimaryTable
+        type: Query
+        field: getToDo
+        request: "get_todo/request.vtl"
+        response: "common-item-response.vtl"
+      - dataSource: PrimaryTable
+        type: Query
+        field: listUserTodos
+        request: "list_user_todos/request.vtl"
+        response: "common-items-response.vtl"
+      - dataSource: PrimaryTable
+        type: ToDo
+        field: user
+        request: "get_todo_user/request.vtl"
+        response: "common-item-response.vtl"
+      - dataSource: PrimaryTable
+        type: Mutation
+        field: createUser
+        request: "create_user/request.vtl"
+        response: "common-item-response.vtl"
+      - dataSource: PrimaryTable
+        type: Mutation
+        field: updateUser
+        request: "update_user/request.vtl"
+        response: "common-item-response.vtl"
+      - dataSource: PrimaryTable
+        type: Mutation
+        field: deleteUser
+        request: "delete_user/request.vtl"
+        response: "common-item-response.vtl"
+      - dataSource: PrimaryTable
+        type: Query
+        field: profile
+        request: "get_profile/request.vtl"
+        response: "get_profile/response.vtl"
+      - dataSource: PrimaryTable
+        type: Query
+        field: listUsers
+        request: "list_users/request.vtl"
+        response: "common-items-response.vtl"
+
+functions:
+  cognitoPostConfirmation:
+    handler: handler.cognitoPostConfirmation
+    events:
+      - cognitoUserPool:
+          pool: ${self:service}-${self:provider.stage}-user-pool
+          trigger: PostConfirmation
+          existing: true
+
+resources:
+  - ${file(./resources/appsync-dynamo-role.yml)}
+  - ${file(./resources/dynamo-table.yml)}
+  - ${file(./resources/web-hosting-bucket.yml)}
+  - ${file(./resources/cognito-userpool.yml)}
