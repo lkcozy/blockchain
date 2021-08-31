@@ -17,10 +17,10 @@ sidemenu: false
 /**
  * background: '#f0f2f5'
  */
-import React from 'react';
-import Footer from '@/components/Footer';
+import React from 'react'
+import Footer from '@/components/Footer'
 
-export default () => <Footer />;
+export default () => <Footer />
 ```
 
 ## HeaderDropdown 头部下拉列表
@@ -31,25 +31,25 @@ HeaderDropdown 是 antd Dropdown 的封装，但是增加了移动端的特殊�
 /**
  * background: '#f0f2f5'
  */
-import { Button, Menu } from 'antd';
-import React from 'react';
-import HeaderDropdown from '@/components/HeaderDropdown';
+import { Button, Menu } from 'antd'
+import React from 'react'
+import HeaderDropdown from '@/components/HeaderDropdown'
 
 export default () => {
   const menuHeaderDropdown = (
     <Menu selectedKeys={[]}>
-      <Menu.Item key="center">个人中心</Menu.Item>
-      <Menu.Item key="settings">个人设置</Menu.Item>
+      <Menu.Item key='center'>个人中心</Menu.Item>
+      <Menu.Item key='settings'>个人设置</Menu.Item>
       <Menu.Divider />
-      <Menu.Item key="logout">退出登录</Menu.Item>
+      <Menu.Item key='logout'>退出登录</Menu.Item>
     </Menu>
-  );
+  )
   return (
     <HeaderDropdown overlay={menuHeaderDropdown}>
       <Button>hover 展示菜单</Button>
     </HeaderDropdown>
-  );
-};
+  )
+}
 ```
 
 ## HeaderSearch 头部搜索框
@@ -60,20 +60,20 @@ export default () => {
 /**
  * background: '#f0f2f5'
  */
-import { Button, Menu } from 'antd';
-import React from 'react';
-import HeaderSearch from '@/components/HeaderSearch';
+import { Button, Menu } from 'antd'
+import React from 'react'
+import HeaderSearch from '@/components/HeaderSearch'
 
 export default () => {
   return (
     <HeaderSearch
-      placeholder="站内搜索"
-      defaultValue="umi ui"
+      placeholder='站内搜索'
+      defaultValue='umi ui'
       options={[
-        { label: 'Ant Design Pro', value: 'Ant Design Pro' },
+        { label: 'Dashboard', value: 'Dashboard' },
         {
-          label: 'Ant Design',
-          value: 'Ant Design',
+          label: 'Dashboard',
+          value: 'Dashboard',
         },
         {
           label: 'Pro Table',
@@ -84,12 +84,12 @@ export default () => {
           value: 'Pro Layout',
         },
       ]}
-      onSearch={(value) => {
-        console.log('input', value);
+      onSearch={value => {
+        console.log('input', value)
       }}
     />
-  );
-};
+  )
+}
 ```
 
 ### API
@@ -112,9 +112,9 @@ export default () => {
 /**
  * background: '#f0f2f5'
  */
-import { message } from 'antd';
-import React from 'react';
-import NoticeIcon from '@/components/NoticeIcon/NoticeIcon';
+import { message } from 'antd'
+import React from 'react'
+import NoticeIcon from '@/components/NoticeIcon/NoticeIcon'
 
 export default () => {
   const list = [
@@ -132,47 +132,47 @@ export default () => {
       datetime: '2017-08-08',
       type: 'notification',
     },
-  ];
+  ]
   return (
     <NoticeIcon
       count={10}
-      onItemClick={(item) => {
-        message.info(`${item.title} 被点击了`);
+      onItemClick={item => {
+        message.info(`${item.title} 被点击了`)
       }}
       onClear={(title: string, key: string) => message.info('点击了清空更多')}
       loading={false}
-      clearText="清空"
-      viewMoreText="查看更多"
+      clearText='清空'
+      viewMoreText='查看更多'
       onViewMore={() => message.info('点击了查看更多')}
       clearClose
     >
       <NoticeIcon.Tab
-        tabKey="notification"
+        tabKey='notification'
         count={2}
         list={list}
-        title="通知"
-        emptyText="你已查看所有通知"
+        title='通知'
+        emptyText='你已查看所有通知'
         showViewMore
       />
       <NoticeIcon.Tab
-        tabKey="message"
+        tabKey='message'
         count={2}
         list={list}
-        title="消息"
-        emptyText="您已读完所有消息"
+        title='消息'
+        emptyText='您已读完所有消息'
         showViewMore
       />
       <NoticeIcon.Tab
-        tabKey="event"
-        title="待办"
-        emptyText="你已完成所有待办"
+        tabKey='event'
+        title='待办'
+        emptyText='你已完成所有待办'
         count={2}
         list={list}
         showViewMore
       />
     </NoticeIcon>
-  );
-};
+  )
+}
 ```
 
 ### NoticeIcon API
@@ -212,17 +212,17 @@ export default () => {
 
 ```tsx | pure
 export interface NoticeIconData {
-  id: string;
-  key: string;
-  avatar: string;
-  title: string;
-  datetime: string;
-  type: string;
-  read?: boolean;
-  description: string;
-  clickClose?: boolean;
-  extra: any;
-  status: string;
+  id: string
+  key: string
+  avatar: string
+  title: string
+  datetime: string
+  type: string
+  read?: boolean
+  description: string
+  clickClose?: boolean
+  extra: any
+  status: string
 }
 ```
 
@@ -233,29 +233,29 @@ RightContent 是以上几个组件的组合，同时新增了 plugins 的 `Selec
 ```tsx | pure
 <Space>
   <HeaderSearch
-    placeholder="站内搜索"
-    defaultValue="umi ui"
+    placeholder='站内搜索'
+    defaultValue='umi ui'
     options={[
-      { label: <a href="https://umijs.org/zh/guide/umi-ui.html">umi ui</a>, value: 'umi ui' },
+      { label: <a href='https://umijs.org/zh/guide/umi-ui.html'>umi ui</a>, value: 'umi ui' },
       {
-        label: <a href="next.ant.design">Ant Design</a>,
-        value: 'Ant Design',
+        label: <a href='next.ant.design'>Dashboard</a>,
+        value: 'Dashboard',
       },
       {
-        label: <a href="https://protable.ant.design/">Pro Table</a>,
+        label: <a href='https://protable.ant.design/'>Pro Table</a>,
         value: 'Pro Table',
       },
       {
-        label: <a href="https://prolayout.ant.design/">Pro Layout</a>,
+        label: <a href='https://prolayout.ant.design/'>Pro Layout</a>,
         value: 'Pro Layout',
       },
     ]}
   />
-  <Tooltip title="使用文档">
+  <Tooltip title='使用文档'>
     <span
       className={styles.action}
       onClick={() => {
-        window.location.href = 'https://pro.ant.design/docs/getting-started';
+        window.location.href = 'https://pro.ant.design/docs/getting-started'
       }}
     >
       <QuestionCircleOutlined />

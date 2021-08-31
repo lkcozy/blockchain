@@ -36,6 +36,24 @@ The two common types are the Public Blockchain and the Private Blockchain.
 - A public blockchain allows any node that has internet connection to access the blockchain by issuing either a write a read request. Some of the popular public blockchain available today are Bitcoins, Ethereum, Factom, Blockstream, and so on.
 - A private blockchain allows nodes to issue similar requests but these nodes must be predefined and authorized.
 
+## Getting Started(Docker)
+
+Build images
+
+```sh
+docker-compose up --build
+#or
+docker-compose build dashboard
+docker-compose up dev
+```
+
+Find out the IP address of running Docker engine:
+
+```sh
+docker-machine ip default
+
+```
+
 ## References
 
 - [openblockchains/awesome-blockchains](https://github.com/openblockchains/awesome-blockchains): A collection about awesome blockchains - open distributed public databases w/ crypto hashes incl
@@ -45,3 +63,7 @@ The two common types are the Public Blockchain and the Private Blockchain.
 - [Awesome Blockchain AI](https://github.com/steven2358/awesome-blockchain-ai): A curated list of Blockchain projects for Artificial Intelligence and Machine Learning.
 
 - [Blockchain-stuff](https://github.com/Xel/Blockchain-stuff): Curated list of blockchain and general cryptocurrency resources
+
+```
+
+```

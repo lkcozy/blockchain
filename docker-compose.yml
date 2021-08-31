@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  dashboard:
+    container_name: dashboard
+    build: ./frontend
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    # volumes:
+    #   - .:/node/app
+    #   - /node/app/node_modules
+    command: yarn start

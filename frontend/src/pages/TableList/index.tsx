@@ -79,7 +79,7 @@ const handleRemove = async (selectedRows: API.RuleListItem[]) => {
   }
 }
 
-const TableList: React.ReactElment = () => {
+const TableList: React.FC = () => {
   /**
    * @en-US Pop-up window of new window
    * @zh-CN 新建窗口的弹窗

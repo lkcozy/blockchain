@@ -25,7 +25,7 @@ export type UpdateFormProps = {
   values: Partial<API.RuleListItem>
 }
 
-const UpdateForm: React.ReactElment<UpdateFormProps> = props => {
+const UpdateForm: React.FC<UpdateFormProps> = props => {
   const intl = useIntl()
   return (
     <StepsForm

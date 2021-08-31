@@ -8,7 +8,7 @@ import { login } from '@/services/ant-design-pro/api'
 
 import styles from './index.less'
 
-const LoginMessage: React.ReactElment<{
+const LoginMessage: React.FC<{
   content: string
 }> = ({ content }) => (
   <Alert
@@ -21,7 +21,7 @@ const LoginMessage: React.ReactElment<{
   />
 )
 
-const Login: React.ReactElment = () => {
+const Login: React.FC = () => {
   const [submitting, setSubmitting] = useState(false)
   const [userLoginState, setUserLoginState] = useState<API.LoginResult>({})
   const [type, setType] = useState<string>('account')
@@ -50,14 +50,14 @@ const Login: React.ReactElment = () => {
         })
         message.success(defaultLoginSuccessMessage)
         await fetchUserInfo()
-        /** 此方法会跳转到 redirect 参数所在的位置 */
+
         if (!history) return
         const { query } = history.location
         const { redirect } = query as { redirect: string }
         history.push(redirect || '/')
         return
       }
-      // 如果失败去设置用户错误信息
+
       setUserLoginState(msg)
     } catch (error) {
       console.log('error: ', error)
@@ -82,7 +82,7 @@ const Login: React.ReactElment = () => {
           <div className={styles.header}>
             <Link to='/'>
               <img alt='logo' className={styles.logo} src='/logo.svg' />
-              <span className={styles.title}>Ant Design</span>
+              <span className={styles.title}>Dashboard</span>
             </Link>
           </div>
           <div className={styles.desc}>

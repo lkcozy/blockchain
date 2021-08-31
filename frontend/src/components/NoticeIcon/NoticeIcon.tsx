@@ -26,10 +26,10 @@ export type NoticeIconProps = {
   viewMoreText?: string
   clearClose?: boolean
   emptyImage?: string
-  children?: React.ReactElement<NoticeIconTabProps>[]
+  children?: React.FC<NoticeIconTabProps>[]
 }
 
-const NoticeIcon: React.ReactElment<NoticeIconProps> & {
+const NoticeIcon: React.FC<NoticeIconProps> & {
   Tab: typeof NoticeList
 } = props => {
   const getNotificationBox = (): React.ReactNode => {
@@ -47,7 +47,7 @@ const NoticeIcon: React.ReactElment<NoticeIconProps> & {
       return null
     }
     const panes: React.ReactNode[] = []
-    React.Children.forEach(children, (child: React.ReactElement<NoticeIconTabProps>): void => {
+    React.Children.forEach(children, (child: React.FC<NoticeIconTabProps>): void => {
       if (!child) {
         return
       }

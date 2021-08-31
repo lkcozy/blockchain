@@ -8,7 +8,7 @@ import styles from './index.less'
 
 export type SiderTheme = 'light' | 'dark'
 
-const GlobalHeaderRight: React.ReactElment = () => {
+const GlobalHeaderRight: React.FC = () => {
   const { initialState } = useModel('@@initialState')
 
   if (!initialState || !initialState.settings) {
@@ -30,8 +30,8 @@ const GlobalHeaderRight: React.ReactElment = () => {
         options={[
           { label: <a href='https://umijs.org/zh/guide/umi-ui.html'>umi ui</a>, value: 'umi ui' },
           {
-            label: <a href='next.ant.design'>Ant Design</a>,
-            value: 'Ant Design',
+            label: <a href='next.ant.design'>Dashboard</a>,
+            value: 'Dashboard',
           },
           {
             label: <a href='https://protable.ant.design/'>Pro Table</a>,

@@ -20,7 +20,7 @@ export type HeaderSearchProps = {
   value?: string
 }
 
-const HeaderSearch: React.ReactElment<HeaderSearchProps> = props => {
+const HeaderSearch: React.FC<HeaderSearchProps> = props => {
   const {
     className,
     defaultValue,

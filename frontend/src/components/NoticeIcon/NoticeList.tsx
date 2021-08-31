@@ -19,7 +19,7 @@ export type NoticeIconTabProps = {
   list: API.NoticeIconItem[]
   onViewMore?: (e: any) => void
 }
-const NoticeList: React.ReactElment<NoticeIconTabProps> = ({
+const NoticeList: React.FC<NoticeIconTabProps> = ({
   list = [],
   onClick,
   onClear,
